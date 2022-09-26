@@ -5,7 +5,7 @@ import { ItemList, Item } from 'style/MainStyle';
 
 const Main = () => {
   const API = process.env.REACT_APP_END_POINT;
-  console.log(API);
+
   const [songList, setSongList] = useState([]);
 
   useEffect(() => {

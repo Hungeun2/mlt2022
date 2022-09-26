@@ -13,7 +13,6 @@ const DetailPage = () => {
     const getData = async () => {
       try {
         const res = await axios.get(API);
-        console.log(res);
         setTime(res.data.data.reverse());
         setInfo(res.data.Info);
       } catch (e) {
@@ -24,19 +23,28 @@ const DetailPage = () => {
   }, [API]);
 
   return (
-    <div>
-      <span>{info.Num} </span>
+    <>
       <span>{info.Name} </span>
-      <span>{info.Artist} </span>
-
-      {time.map((data, index) => (
-        <div key={index}>
-          <span>{data.Date} </span>
-          <span>{data.Time}시 </span>
-          <span>{data.Cnt}개</span>
-        </div>
-      ))}
-    </div>
+      <span> {info.Artist}</span>
+      <table>
+        <thead>
+          <tr>
+            <th>날짜</th>
+            <th>시간</th>
+            <th>갯수</th>
+          </tr>
+        </thead>
+        <tbody>
+          {time.map((data, index) => (
+            <tr key={index}>
+              <td>{data.Date} </td>
+              <td>{data.Time}시 </td>
+              <td>{data.Cnt}개</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
 
