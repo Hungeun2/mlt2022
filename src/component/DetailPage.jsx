@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Head, Table } from 'style/DetailStyle';
 
 const DetailPage = () => {
   const { songnum } = useParams();
-  const [time, setTime] = useState([]);
+  const [data, setData] = useState([]);
   const [info, setInfo] = useState([]);
 
   const API = process.env.REACT_APP_END_POINT + songnum;
@@ -13,7 +14,7 @@ const DetailPage = () => {
     const getData = async () => {
       try {
         const res = await axios.get(API);
-        setTime(res.data.data.reverse());
+        setData(res.data.data.reverse());
         setInfo(res.data.Info);
       } catch (e) {
         console.error(e);
@@ -24,26 +25,35 @@ const DetailPage = () => {
 
   return (
     <>
-      <span>{info.Name} </span>
-      <span> {info.Artist}</span>
-      <table>
+      <Head>
+        <span>{info.Name} </span>
+        <span> {info.Artist}</span>
+      </Head>
+
+      <Table>
         <thead>
           <tr>
             <th>날짜</th>
             <th>시간</th>
             <th>갯수</th>
+            <th>증가</th>
           </tr>
         </thead>
         <tbody>
-          {time.map((data, index) => (
-            <tr key={index}>
-              <td>{data.Date} </td>
-              <td>{data.Time}시 </td>
-              <td>{data.Cnt}개</td>
+          {data.map((res, index) => (
+            <tr
+              key={index}
+              className={`
+            ${res.Time === '0000' ? 'otherDay' : ''}`}
+            >
+              <td>{res.Date}</td>
+              <td>{res.Time.slice(0, 2)}시 </td>
+              <td>{res.Cnt}개</td>
+              <td>{data[index + 1] !== undefined ? Number(res.Cnt) - Number(data[index + 1].Cnt) : 0}개</td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </>
   );
 };
