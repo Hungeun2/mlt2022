@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { ItemList, Item } from 'style/MainStyle';
+import Header from './common/Header';
 
 const Main = () => {
   const API = process.env.REACT_APP_END_POINT;
@@ -21,18 +22,21 @@ const Main = () => {
   }, [API]);
 
   return (
-    <ItemList>
-      {songList.map((data, index) => (
-        <Item>
-          <Link to={`/${data.Num}`} key={data.Num}>
-            <p>
-              {index + 1}. {data.Name}
-            </p>
-            <p>{data.Artist}</p>
-          </Link>
-        </Item>
-      ))}
-    </ItemList>
+    <>
+      <Header />
+      <ItemList>
+        {songList.map((data, index) => (
+          <Item>
+            <Link to={`/${data.Num}`} key={data.Num}>
+              <p>
+                {index + 1}. {data.Name}
+              </p>
+              <p>{data.Artist}</p>
+            </Link>
+          </Item>
+        ))}
+      </ItemList>
+    </>
   );
 };
 
