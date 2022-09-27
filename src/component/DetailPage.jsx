@@ -9,7 +9,13 @@ const DetailPage = () => {
   const [info, setInfo] = useState([]);
 
   const API = process.env.REACT_APP_END_POINT + songnum;
-
+  const addSign = (cnt) => {
+    if (cnt > 0) {
+      return '+' + String(cnt);
+    } else {
+      return cnt;
+    }
+  };
   useEffect(() => {
     const getData = async () => {
       try {
@@ -49,7 +55,7 @@ const DetailPage = () => {
               <td>{res.Date}</td>
               <td>{res.Time.slice(0, 2)}시 </td>
               <td>{res.Cnt}개</td>
-              <td>{data[index + 1] !== undefined ? Number(res.Cnt) - Number(data[index + 1].Cnt) : 0}개</td>
+              <td>{data[index + 1] !== undefined ? addSign(Number(res.Cnt) - Number(data[index + 1].Cnt)) : 0}</td>
             </tr>
           ))}
         </tbody>
