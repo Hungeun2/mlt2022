@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Head, Table } from 'style/DetailStyle';
+import { PageStyle } from 'style/PageStyle';
 
 const DetailPage = () => {
   const { songnum } = useParams();
@@ -30,7 +31,7 @@ const DetailPage = () => {
   }, [API]);
 
   return (
-    <>
+    <PageStyle>
       <Head>
         <span>{info.Name} </span>
         <span> {info.Artist}</span>
@@ -60,7 +61,7 @@ const DetailPage = () => {
           ))}
         </tbody>
       </Table>
-    </>
+    </PageStyle>
   );
 };
 
