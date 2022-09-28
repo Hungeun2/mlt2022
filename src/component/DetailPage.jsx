@@ -51,7 +51,7 @@ const DetailPage = () => {
             <tr
               key={index}
               className={`
-            ${res.Time === '0000' ? 'otherDay' : ''}`}
+            ${res.Time === '0000' || res.Time === '1200' ? 'otherDay' : ''}`}
             >
               <td>{res.Date}</td>
               <td>{res.Time.slice(0, 2)}시 </td>
