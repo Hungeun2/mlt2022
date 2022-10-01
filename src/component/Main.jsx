@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { ItemList, Item } from 'style/MainStyle';
-import Header from './common/Header';
 
 const Main = () => {
   const API = process.env.REACT_APP_END_POINT;
@@ -23,7 +22,6 @@ const Main = () => {
 
   return (
     <>
-      <Header />
       <ItemList>
         {songList.map((data, index) => (
           <Item>
