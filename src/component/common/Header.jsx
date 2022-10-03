@@ -1,15 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { HeadStyle } from 'style/HeaderStyle';
 
-const Header = ({ sort, setSort }) => {
-  const changeSort = () => {
-    setSort(() => !sort);
-  };
+const Header = () => {
   return (
-    <>
-      <Link to="/"> Home </Link>
-      <button onClick={changeSort}>{sort ? 'All' : 'Artist'}</button>
-    </>
+    <HeadStyle>
+      <Link to="/"> 전체보기 </Link>
+      <Link to="/artist"> 가수별보기</Link>
+    </HeadStyle>
   );
 };
 

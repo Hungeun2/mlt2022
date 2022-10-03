@@ -1,20 +1,39 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Main from 'component/Main';
 import DetailPage from 'component/DetailPage';
 import Header from 'component/common/Header';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ArtistView from 'component/ArtistView';
+import axios from 'axios';
+import AllView from 'component/AllView';
+import ArtistDetailPage from 'component/ArtistDetailPage';
+
+const API = process.env.REACT_APP_END_POINT;
 
 const App = () => {
-  const [sort, setSort] = useState(false);
+  const [songList, setSongList] = useState([]);
+
+  useEffect(() => {
+    const get = async () => {
+      try {
+        const res = await axios.get(API);
+        setSongList(res.data.songlist);
+      } catch (err) {
+        console.error('Error : ', err);
+      }
+    };
+    get();
+  }, []);
 
   return (
     <>
-      <Header sort={sort} setSort={setSort} />
+      <Header />
 
       <Routes>
-        <Route path="/" element={<Main sort={sort} />} />
-        <Route path="/:songnum" element={<DetailPage />} />
+        <Route path="/" element={<AllView songList={songList} />} />
+        <Route path="/artist" element={<ArtistView songList={songList} />} />
+        <Route path="/artist/:artistName" element={<ArtistDetailPage />} />
+        <Route path="/detail/:songNum" element={<DetailPage />} />
       </Routes>
     </>
   );

@@ -5,11 +5,11 @@ import { Head, Table } from 'style/DetailStyle';
 import { PageStyle } from 'style/PageStyle';
 
 const DetailPage = () => {
-  const { songnum } = useParams();
+  const { songNum } = useParams();
+  const API = process.env.REACT_APP_END_POINT + songNum;
   const [data, setData] = useState([]);
   const [info, setInfo] = useState([]);
 
-  const API = process.env.REACT_APP_END_POINT + songnum;
   const addSign = (cnt) => {
     if (cnt > 0) {
       return '+' + String(cnt);

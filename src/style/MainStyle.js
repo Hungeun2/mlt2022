@@ -29,3 +29,7 @@ export const ItemList = styled.div`
   justify-content: center;
   margin: 10px auto;
 `;
+
+export const ArtistItem = styled(Item)`
+  width: 30%;
+`;
