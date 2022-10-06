@@ -1,6 +1,7 @@
 import React from 'react';
-import { ItemList, ArtistItem } from 'style/MainStyle';
 import { Link } from 'react-router-dom';
+
+import { ItemList, ArtistItem } from 'style/MainStyle';
 
 const ArtistView = ({ songList }) => {
   let artistList = [];

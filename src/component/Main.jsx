@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { ItemList } from 'style/MainStyle';
-import AllView from './AllView';
+
+import AllView from 'AllView';
 
 const Main = ({ songList }) => {
   return (

@@ -1,12 +1,14 @@
-import './App.css';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+
 import DetailPage from 'component/DetailPage';
 import Header from 'component/common/Header';
-import React, { useState, useEffect } from 'react';
 import ArtistView from 'component/ArtistView';
-import axios from 'axios';
 import AllView from 'component/AllView';
 import ArtistDetailPage from 'component/ArtistDetailPage';
+
+import axios from 'axios';
+import Register from 'component/Register';
 
 const API = process.env.REACT_APP_END_POINT;
 
@@ -34,6 +36,7 @@ const App = () => {
         <Route path="/artist" element={<ArtistView songList={songList} />} />
         <Route path="/artist/:artistName" element={<ArtistDetailPage />} />
         <Route path="/detail/:songNum" element={<DetailPage />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   );

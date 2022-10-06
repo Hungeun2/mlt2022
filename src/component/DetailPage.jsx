@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
 import axios from 'axios';
+
 import { Head, Table } from 'style/DetailStyle';
 import { PageStyle } from 'style/PageStyle';
 
