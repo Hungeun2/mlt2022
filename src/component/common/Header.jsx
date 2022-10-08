@@ -6,7 +6,8 @@ const Header = () => {
   return (
     <HeadStyle>
       <Link to="/"> 전체보기 </Link>
-      <Link to="/artist"> 가수별보기</Link>
+      <Link to="/artist">가수별보기</Link>
+      <Link to="/register">등록하기</Link>
     </HeadStyle>
   );
 };
