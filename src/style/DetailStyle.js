@@ -9,6 +9,9 @@ export const Head = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: sticky;
+  top: 0;
+  background-color: white;
 `;
 export const Table = styled.table`
   border: 1px solid red;
