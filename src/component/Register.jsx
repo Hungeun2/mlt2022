@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { RegisterForm } from 'style/RegisterStyle';
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -6,29 +8,43 @@ const Register = () => {
     Name: '',
     Artist: '',
   });
+  const [isAble, setIsAble] = useState(false);
+
+  useEffect(() => {
+    values['Num'] && values['Name'] && values['Artist'] ? setIsAble(true) : setIsAble(false);
+  }, [values]);
 
   const handleChange = (e) => {
-    console.log('change');
     setValues({
       ...values,
       [e.target.name]: e.target.value,
     });
   };
+
   const handleRegister = (e) => {
     e.preventDefault();
+    console.log(values['Artist'], values['Name'], values['Num']);
     console.log(values);
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <label forhtml="number">Number : </label>
-      <input name="Num" id="number" maxLength={8} value={values.Num} onChange={handleChange} />
-      <label forhtml="name">Name : </label>
-      <input name="Name" id="name" value={values.Name} onChange={handleChange} />
-      <label forhtml="artist">Artist : </label>
-      <input name="Artist" id="artist" value={values.Artist} onChange={handleChange} />
-      <button type="submit">등록하기</button>
-    </form>
+    <RegisterForm onSubmit={handleRegister}>
+      <label>
+        Number
+        <input name="Num" type="number" value={values.Num} onChange={handleChange} />
+      </label>
+      <label>
+        Name
+        <input name="Name" value={values.Name} onChange={handleChange} />
+      </label>
+      <label>
+        Artist
+        <input name="Artist" value={values.Artist} onChange={handleChange} />
+      </label>
+      <button disabled={!isAble} type="submit">
+        등록하기
+      </button>
+    </RegisterForm>
   );
 };
 
