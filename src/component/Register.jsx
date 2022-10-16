@@ -1,6 +1,9 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import { RegisterForm } from 'style/RegisterStyle';
+
+const API = process.env.REACT_APP_END_POINT + 'register';
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -21,10 +24,29 @@ const Register = () => {
     });
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(values['Artist'], values['Name'], values['Num']);
-    console.log(values);
+    const body = {
+      Num: Number(values['Num']),
+      Name: values['Name'],
+      Artist: values['Artist'],
+    };
+    if (body.Num.toString().length === 8) {
+      try {
+        const res = await axios.post(API, body);
+        if (res.data === 'success') {
+          alert('등록되었습니다.');
+          setValues({ Num: '', Name: '', Artist: '' });
+        } else {
+          alert('이미 등록되어 있는 곡입니다.');
+          console.log(res);
+        }
+      } catch (err) {
+        console.error('Error : ', err);
+      }
+    } else {
+      alert('Number를 확인하세요');
+    }
   };
 
   return (
