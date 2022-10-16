@@ -26,6 +26,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsAble(false);
     const body = {
       Num: Number(values['Num']),
       Name: values['Name'],
