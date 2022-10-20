@@ -23,7 +23,25 @@ export const Table = styled.table`
     text-align: center;
     border: 1px solid black;
   }
-  .otherDay {
+  .halfDay {
     background-color: lightgray;
+  }
+
+  .change {
+    background-color: #ccf381;
+    &:hover {
+      .changeAmount {
+        display: block;
+      }
+    }
+  }
+  .changeAmount {
+    font-size: 14px;
+    display: none;
+    color: #4831d4;
+    font-weight: 700;
+  }
+  .changeAmount.minus {
+    color: red;
   }
 `;
