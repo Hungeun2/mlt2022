@@ -14,7 +14,6 @@ export const Head = styled.div`
   background-color: white;
 `;
 export const Table = styled.table`
-  border: 1px solid red;
   width: 100%;
   max-width: 500px;
   border-collapse: collapse;
