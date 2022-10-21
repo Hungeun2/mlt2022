@@ -65,41 +65,55 @@ const DetailPage = () => {
                   key={index}
                   className={`${res.Time.slice(0, 2) === '00' || res.Time.slice(0, 2) === '12' ? 'halfDay' : ''}`}
                 >
-                  <td>{res.Date}</td>
-                  <td>{res.Time.slice(0, 2)}시 </td>
-                  <td>{res.Cnt}개</td>
+                  {/* day */}
+                  {data[index - 1]?.Date !== res.Date ? (
+                    <td rowSpan={Number(res.Time.slice(0, 2)) + 1}>{res.Date}</td>
+                  ) : null}
+                  {/* time */}
+                  <td>{`${res.Time.slice(0, 2)}시`} </td>
+                  {/* likes */}
+                  <td>{res.Cnt}</td>
+                  {/* delta */}
                   <td>{addSign(Number(res.Cnt) - Number(data[index + 1]?.Cnt)) || 0}</td>
-                  <td
-                    className={`${res.listnerCnt !== data[index + 1]?.listnerCnt ? 'listnerCnt change' : 'listnerCnt'}`}
-                  >
-                    {res.listnerCnt || ''}
-
-                    <span
-                      className={`${
-                        (res.listnerCnt - data[index + 1]?.listnerCnt || 0) >= 0 ? 'changeAmount' : 'changeAmount minus'
-                      }`}
-                    >
-                      {addSign(res.listnerCnt - data[index + 1]?.listnerCnt || res.listnerCnt)}
-                    </span>
-                  </td>
-                  <td
-                    className={`${
-                      res.StreamCount !== data[index + 1]?.StreamCount ? 'streamCount change' : 'streamCount'
-                    }`}
-                  >
-                    {res.StreamCount || ''}
-                    <span className="changeAmount">
-                      +{nToS(sToN(res.StreamCount) - sToN(data[index + 1]?.StreamCount || 0), 1)}
-                    </span>
-                  </td>
-                  <td
-                    className={`${res.StreamUser !== data[index + 1]?.StreamUser ? 'streamUser change' : 'streamUser'}`}
-                  >
-                    {res.StreamUser || ''}
-                    <span className="changeAmount">
-                      +{nToS(sToN(res.StreamUser) - sToN(data[index + 1]?.StreamUser || 0), 1)}
-                    </span>
-                  </td>
+                  {/* daily stream */}
+                  {res.listnerCnt !== data[index + 1]?.listnerCnt ? (
+                    <td className="change">
+                      {res.listnerCnt}
+                      <span
+                        className={`${
+                          sToN(res.listnerCnt) - sToN(data[index + 1]?.listnerCnt) > 0
+                            ? 'changeAmount'
+                            : 'changeAmount minus'
+                        }`}
+                      >
+                        {addSign(sToN(res.listnerCnt) - sToN(data[index + 1]?.listnerCnt), 1)}
+                      </span>
+                    </td>
+                  ) : (
+                    <td className="none"></td>
+                  )}
+                  {/* Total streaming */}
+                  {res.StreamCount !== data[index + 1]?.StreamCount ? (
+                    <td className="change">
+                      {res.StreamCount}
+                      <span className="changeAmount">
+                        +{nToS(sToN(res.StreamCount) - sToN(data[index + 1]?.StreamCount || 0), 1)}
+                      </span>
+                    </td>
+                  ) : (
+                    <td className="none"></td>
+                  )}
+                  {/* Total User */}
+                  {res.StreamUser !== data[index + 1]?.StreamUser ? (
+                    <td className="change">
+                      {res.StreamUser}{' '}
+                      <span className="changeAmount">
+                        +{nToS(sToN(res.StreamUser) - sToN(data[index + 1]?.StreamUser || 0), 1)}
+                      </span>
+                    </td>
+                  ) : (
+                    <td className="none"></td>
+                  )}
                 </tr>
               ))}
             </tbody>
