@@ -39,6 +39,8 @@ export const sToN = (string) => {
       return Number(string.slice(0, -1)) * 1000;
     case 'M':
       return Number(string.slice(0, -1)) * 1000000;
+    case '+':
+      return Number(string.slice(0, -1));
     default:
       return Number(string);
   }
