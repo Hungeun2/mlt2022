@@ -23,7 +23,7 @@ export const Table = styled.table`
     border: 1px solid black;
   }
   .halfDay {
-    background-color: lightgray;
+    background-color: rgb(220, 220, 220);
   }
 
   .change {
