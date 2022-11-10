@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import { Head, Table } from 'style/DetailStyle';
 import { PageStyle } from 'style/PageStyle';
+import { AddButtonStyle } from 'style/AddButtonStyle';
 import ErrorPage from './common/ErrorPage';
 import LoadingPage from './common/LoadingPage';
 
@@ -17,6 +18,11 @@ const DetailPage = () => {
   const [info, setInfo] = useState([]);
   const [checkErr, setCheckErr] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [dataVolume, setDataVolume] = useState(120);
+
+  const AddDataButton = () => {
+    setDataVolume(dataVolume + 120);
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -60,14 +66,16 @@ const DetailPage = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((res, index) => (
+              {data.slice(0, dataVolume).map((res, index) => (
                 <tr
                   key={index}
                   className={`${res.Time.slice(0, 2) === '00' || res.Time.slice(0, 2) === '12' ? 'halfDay' : ''}`}
                 >
                   {/* day */}
                   {data[index - 1]?.Date !== res.Date ? (
-                    <td rowSpan={Number(res.Time.slice(0, 2)) + 1}>{res.Date}</td>
+                    <td rowSpan={Number(res.Time.slice(0, 2)) + 1} className="day">
+                      {res.Date}
+                    </td>
                   ) : null}
                   {/* time */}
                   <td>{`${res.Time.slice(0, 2)}시`} </td>
@@ -118,6 +126,9 @@ const DetailPage = () => {
               ))}
             </tbody>
           </Table>
+          <AddButtonStyle>
+            {dataVolume <= data.length ? <button onClick={() => AddDataButton()}>More</button> : null}
+          </AddButtonStyle>
         </PageStyle>
       )}
     </>
