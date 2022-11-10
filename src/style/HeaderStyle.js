@@ -4,10 +4,13 @@ export const HeadStyle = styled.div`
   display: flex;
   justify-content: center;
   a {
-    border: 1px solid gray;
+    border: 1px solid #d0d7de;
     border-radius: 5px;
-    color: black;
-    background-color: rgb(233, 234, 237);
+    background-color: white;
+    color: #0969da;
+    font-size: 15px;
+    font-weight: 600;
+
     text-decoration: none;
     margin: 10px;
     padding: 5px;
