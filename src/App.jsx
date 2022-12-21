@@ -8,6 +8,7 @@ import AllView from 'component/AllView';
 import ArtistDetailPage from 'component/ArtistDetailPage';
 import Register from 'component/Register';
 import ErrorPage from 'component/common/ErrorPage';
+import NewAlbum from 'component/NewAlbum';
 
 import axios from 'axios';
 import LoadingPage from 'component/common/LoadingPage';
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/artist/:artistName" element={<ArtistDetailPage />} />
           <Route path="/detail/:songNum" element={<DetailPage />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/newalbum" element={<NewAlbum />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       )}
